@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	queue<int>qe;
+	int n,m,x;
+	cin>>n>>m;
+	for(int i=1;i<=n;i++)
+		qe.push(i);
+	while(!qe.empty())
+	{
+		for(int i=1;i<m;i++)
+		{
+			x=qe.front();
+			qe.pop();qe.push(x);
+		}
+		x=qe.front();qe.pop();
+		cout<<x<<" ";
+	}
+	return 0;
+}
