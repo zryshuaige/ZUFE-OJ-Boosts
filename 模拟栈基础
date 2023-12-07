@@ -1,0 +1,36 @@
+//(1) “push x” – 向栈顶插入一个数x；
+//(2) “pop” – 从栈顶弹出一个数；
+//(3) “empty” – 判断栈是否为空；
+//(4) “query” – 查询栈顶元素。
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	stack<int> st;
+	int m,top=0,x;
+	string s;
+	cin>>m;
+	while(m--)
+	{
+		cin>>s;
+		if(s=="push")
+		{
+			cin>>x;
+			st.push(x);
+		}
+		else if(s=="pop")
+		{
+			st.pop();
+		}
+		else if(s=="empty")
+		{
+			if(st.empty())	printf("YES\n");
+			else 
+        printf("NO\n");
+		}
+		else if(s=="query")	
+      printf("%d\n",st.top());
+	}
+	return 0;
+}
