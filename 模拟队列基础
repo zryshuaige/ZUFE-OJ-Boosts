@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	queue<int>qe;
+	int m,x;
+	string s;
+	cin>>m;
+	while(m--)
+	{
+		cin>>s;
+		if(s=="push")
+		{
+			cin>>x;qe.push(x);
+		}
+		else if(s=="pop")	qe.pop();
+		else if(s=="empty")	
+		{
+			if(qe.empty())	cout<<"YES"<<'\n';
+			else cout<<"NO"<<'\n';
+		}
+		else if(s=="query")
+			cout<<qe.front()<<'\n';
+	}
+	return 0;
+}
