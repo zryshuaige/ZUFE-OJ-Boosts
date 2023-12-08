@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+
+const int T = 1000005;
+const int M = 105;
+int dp[T];
+int a[M],b[M];
+int main()
+{
+    int t,m;
+    cin>>t>>m;
+    for(int i=1;i<=m;i++)   cin>>a[i]>>b[i];
+    for(int i=1;i<=m;i++)
+    {
+        for(int j=t;j>=a[i];j--)//--t
+        {
+            dp[j]=max(dp[j],dp[j-a[i]]+b[i]);
+        }
+    }
+    
+    cout<<dp[t];
+    return 0;
+}
