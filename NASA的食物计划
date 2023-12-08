@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+int v[55],w[55],k[55];
+int dp[405][405];
+int main()
+{
+    int vmax,wmax,n;
+    cin>>vmax>>wmax;
+    cin>>n;
+    for(int i=1;i<=n;i++) cin>>v[i]>>w[i]>>k[i];
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=vmax;j>=v[i];j--)
+        {
+            for(int q=wmax;q>=w[i];q--)
+            {
+                dp[j][q]=max(dp[j][q],dp[j-v[i]][q-w[i]]+k[i]);
+            }
+        }
+    }
+    cout<<dp[vmax][wmax];
+    return 0;
+}
