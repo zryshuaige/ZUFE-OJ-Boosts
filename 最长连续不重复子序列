@@ -1,0 +1,24 @@
+#include<iostream>
+#include<string>
+using namespace std;
+const int N = 1e5+10;
+int a[N],vis[N];
+
+int main()
+{
+	int n,ans=0;
+	cin>>n;
+	for(int i=1;i<=n;i++)	scanf("%d",&a[i]);
+	for(int i=1,j=1;i<=n;i++)
+	{
+		vis[a[i]]++;
+		if(vis[a[i]]>1)
+		{
+			vis[a[j]]--;
+			j++;
+		}
+		ans=max(ans,i-j+1);
+	}
+	cout<<ans;
+	return 0;
+}
