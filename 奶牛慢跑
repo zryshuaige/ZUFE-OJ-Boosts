@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 1e5+5;
+
+struct cow
+{
+	 int p,v;
+}s[N];
+
+int main()
+{
+	stack<int>st;
+	 int n,i=1;
+	cin>>n;
+	while(n--)
+	{
+	    scanf("%d%d",&s[i].p,&s[i].v);
+	    while(!st.empty()&&s[i].v<st.top())
+	        st.pop();
+	    st.push(s[i].v);
+	    i++;
+	}
+	cout<<st.size();
+	return 0;
+}
