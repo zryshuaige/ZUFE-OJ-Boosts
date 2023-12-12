@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 3*1e5+5;
+
+int main()
+{
+	long  long int x;
+	stack<long long int >st;
+	int n;
+	cin>>n;
+	while(n--)
+	{
+		scanf("%d",&x);
+		while(!st.empty()&&st.top()>=x)
+			st.pop();
+		if(st.empty())	printf("-1 ");
+		else printf("%ld ",st.top());
+		st.push(x);
+	}
+	return 0;	
+}
