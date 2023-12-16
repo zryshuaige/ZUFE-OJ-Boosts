@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,f[100010];
+struct node{
+	int num;
+	int id;
+}e;
+deque <node> q;
+int main()
+{
+	scanf("%d",&n);
+	for (int i=1;i<=n;i++)
+	{
+		int a;
+		scanf("%d",&a);
+		while (!q.empty()&&q.back().num<a) f[q.back().id]=i,q.pop_back(); 
+		e.num=a; e.id=i;
+		q.push_back(e); 
+	}
+	for (int i=1;i<=n;i++) printf("%d\n",f[i]);
+	return 0;
+}
