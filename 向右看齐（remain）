@@ -1,0 +1,34 @@
+//AC : 14%.problem is still remains to be solved;
+
+#include <iostream>
+#include<stack>
+using namespace std;
+const int N = 1e5 + 5;
+int b[N];
+struct ss
+{
+	int x,v;
+}a[N];
+int main()
+{
+    stack<struct ss>st;
+    long int n,cnt;
+    cin >> n;
+    int n1=n;
+    for(int i=1;i<=n;i++)	a[i].x=i;
+    for (int i = 1; i <= n; i++)   cin>>a[i].v;
+    while (n>=1)
+    {
+        cnt = a[n].v;
+        while (!st.empty() && cnt >= st.top().v)
+            st.pop();
+        if (st.empty()){b[n]=0;st.push(a[n]);}
+        else b[n]=st.top().x;
+        n--;
+    }
+    
+    for(int i=1;i<=n1;i++){
+	printf("%d\n",b[i]);
+	}
+    return 0;
+}
