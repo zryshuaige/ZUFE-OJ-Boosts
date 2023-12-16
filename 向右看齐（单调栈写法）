@@ -1,0 +1,27 @@
+#include <iostream>
+#include<stack>
+using namespace std;
+const int N = 1e5 + 5;
+int b[N];
+struct ss
+{
+	int x,v;
+}a[N];
+int main()
+{
+    stack<ss>st;
+    int n,cnt; cin >> n; int n1=n;
+    for(int i=1;i<=n;i++)	a[i].x=i;
+    for (int i = 1; i <= n; i++)   scanf("%d",&a[i].v);
+    for(int i=1;i<=n;i++)
+    {
+        cnt = a[i].v;
+        while (!st.empty() && cnt > st.top().v)
+        {b[st.top().x]=i;st.pop();}
+        st.push(a[i]);
+    }
+    
+    for(int i=1;i<=n;i++)
+		printf("%d\n",b[i]);
+    return 0;
+}
