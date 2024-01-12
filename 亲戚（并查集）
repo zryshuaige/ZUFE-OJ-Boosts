@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N =2*1e4+5;
+int father[N];
+
+int find(int x)
+{
+	if(x!=father[x])
+		father[x]=find(father[x]);
+	return father[x];
+}
+
+void unity(int x,int y)
+{
+	x=find(x),y=find(y);
+	if(x!=y)
+		father[x]=y;
+}
+
+int main(void)
+{
+	int n,m,q,x,y;
+	scanf("%d %d",&n,&m);
+	for(int i=1;i<=n;i++)
+		father[i]=i;
+	for(int i=1;i<=m;i++)
+	{
+		scanf("%d %d",&x,&y);
+		unity(x,y);
+	}
+	
+	scanf("%d",&q);
+	while(q--)
+	{
+		scanf("%d %d",&x,&y);
+		if(find(x)==find(y))
+			printf("Yes\n");
+		else printf("No\n");
+	}
+	return 0;
+}
