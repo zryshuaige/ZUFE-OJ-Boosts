@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N =25;
+int a[N][N],vis[N];
+int n,minf=1e9;
+void dfs(int x,int cnt)//x表示工序
+{
+	if(cnt>minf)	return;
+	if(x==n+1)
+	{
+		if(cnt<minf){
+			minf=cnt;
+			return;
+		}
+	}
+	
+	for(int i=1;i<=n;i++)
+	{
+		if(!vis[i])
+		{
+			vis[i]=1;
+			if(cnt<minf)	dfs(x+1,cnt+a[x][i]);
+			vis[i]=0;	
+		}
+	}
+}
+
+int main()
+{
+	cin>>n;
+	for(int i=1;i<=n;i++)
+		for(int j=1;j<=n;j++)
+			cin>>a[i][j];
+	dfs(1,0);
+	cout<<minf;
+	return 0;
+}
