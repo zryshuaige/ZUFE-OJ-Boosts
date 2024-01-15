@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N =25;
+int e[N],ne[N],head=-1,idx=1;
+
+void add_to_head(int x)
+{
+	e[idx]=x;ne[idx]=head;head=idx++;
+}
+
+void add(int k,int x)
+{
+	e[idx]=x;ne[idx]=ne[k];ne[k]=idx++;
+}
+void del(int k)
+{
+	if(k==head)	head=ne[head];
+	ne[k]=ne[ne[k]];
+}
+
+int main(void)
+{
+	int n,m;cin>>n>>m;
+	for(int i=1;i<=n;i++)
+	{
+		if(i==1)add_to_head(i);
+		else add(i-1,i); 
+	}
+	ne[n]=head;
+	int cur=head;
+	while(n--)
+	{
+		for(int i=1;i<m-1;i++)
+			cur=ne[cur];
+		cout<<e[ne[cur]]<<" ";
+		ne[cur]=ne[ne[cur]];
+		cur=ne[cur];
+	}
+	return 0;
+}
