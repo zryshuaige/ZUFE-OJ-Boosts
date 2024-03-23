@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+int ans,cnt,x;//ans表示输出结果即组合数量，cnt表示当前的积分数 
+
+void dfs(int i)//i表示当前的方形硬币 
+{
+	if(cnt>x||i>17)	return;//剪枝 由题意知i<=17; 
+	if(cnt==x){ans++;return;}//当且仅当积分等于输入值时 ans++; 
+	for(int k=i;k<=17;k++)
+	{
+		if(cnt+k*k<=x)//提前判断cnt+k*k<=x 优化减少搜索次数 
+		{
+			cnt+=k*k;
+			dfs(k); 
+			cnt-=k*k;
+		}
+	}
+}
+int main(void)
+{
+	while(cin>>x)
+	{
+		if(x==0)break;//输入为0时结束 
+		ans=0,cnt=0;//每次搜索都重置一下结果 
+		dfs(1);//从1开始搜索 
+		cout<<ans<<"\n";
+	}
+	return 0;
+}
