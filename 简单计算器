@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+stack<char>st_op;
+stack<double>st_nums;
+
+int  level(char s1){
+	if(s1=='*'||s1=='/')
+		return 2;
+	if(s1=='+'||s1=='-')
+		return 1;
+}
+
+void cul()
+{
+	char c=st_op.top();st_op.pop();
+	double a,b;
+	a=st_nums.top();st_nums.pop();
+	b=st_nums.top();st_nums.pop();
+	if(c=='+')st_nums.push(b+a);
+	if(c=='-')st_nums.push(b-a);
+	if(c=='*')st_nums.push(b*a*1.0);
+	if(c=='/')st_nums.push(b/a*1.0);
+} 
+
+int main(void)
+{
+	string str;
+	double x;
+	getline(cin,str);
+	
+	int len=str.size();
+	for(int i=0;i<len;i++)
+	{
+		if(str[i]>='0'&& str[i]<='9')
+		{
+			x=str[i]-'0';
+			while(str[i+1]>='0'&& str[i+1]<='9')
+			{
+				x=x*10+str[i+1]-'0';
+				i++;
+			}
+			st_nums.push(x);
+		}
+		else if(str[i]=='+'||str[i]=='-'||str[i]=='*'||str[i]=='/')
+		{
+			if(st_op.empty()||level(str[i])>level(st_op.top()))
+				st_op.push(str[i]);
+			else if(!st_op.empty()&&level(str[i])<=level(st_op.top()))
+			{
+				while(!st_op.empty()&&level(str[i])<=level(st_op.top()))
+				{
+					cul();
+				}st_op.push(str[i]);
+			}
+		}
+	}
+	
+	while(!st_op.empty())
+		cul();
+	
+	printf("%.2lf",st_nums.top());
+	
+	return 0;
+}
+//栈模拟实现
